@@ -9,8 +9,7 @@ const generateTokenAndSetCookie = (res, userId) => {
 
     res.cookie('access_token', token, {
         httpOnly: true,  
-        secure: isProduction,  
-        sameSite: isProduction ? 'strict' : 'lax',  
+        secure: true,  // Always true in prod (required for sameSite: 'none')        sameSite: isProduction ? 'strict' : 'lax',  
         maxAge: 7 * 24 * 60 * 60 * 1000,  // 7d
     });
 };
