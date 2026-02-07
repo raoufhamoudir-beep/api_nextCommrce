@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const verifyToken = require('./middleware/verifyToken'); // 👈 لا تنسَ هذا السطر!
+const verifyToken = require('./middleware/verifyToken'); 
 
 const app = express();
 app.set('trust proxy', true);
@@ -11,7 +11,7 @@ app.set('trust proxy', true);
 app.use(express.json());
 app.use(cookieParser());
 
-const whitelist = ['localhost:3000', 'localhost:5173'];
+const whitelist = ['localhost:3000', 'https://next-commerce-admine.vercel.app'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -74,4 +74,5 @@ app.use('/api/offer', require('./routes/OfferRoutes'));
 const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT} 🚀`));
+
 });
